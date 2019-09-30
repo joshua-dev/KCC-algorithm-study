@@ -1,0 +1,1 @@
+def solution(mylist: list) -> list: return [len(ele) for ele in mylist]
