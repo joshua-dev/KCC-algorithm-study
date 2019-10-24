@@ -72,6 +72,13 @@ def enter(data: str, records: list):
     records.append(data)
 
 
+def enter(user_id: str, nickname: str, output: list):
+
+    # TODO
+
+    return
+
+
 def leave(data: str, record: list):
 
     # TODO
@@ -91,6 +98,12 @@ def change(data: str, records: list):
             records[index] = ' '.join([record_split[0], user_id, new_nickname])
 
 
+def change(user_id: str, nickname: str, temp: list):
+    for index in range(len(temp)):
+        data = temp[index]
+        data_split = data.split()
+
+
 def convert(data: str) -> str:
     data_split = data.split()
 
@@ -98,23 +111,29 @@ def convert(data: str) -> str:
         return '%s님이 들어왔습니다.' % data[2]
 
     elif data_split[0] == 'Leave':
+        # FIXME: I don't know nickname
         return '%s님이 나갔습니다.' % data[2]
 
 
 def solution(record: list) -> list:
-    answer = list()
+    temp = list()
+    output = list()
 
     for data in record:
         data_split = data.split()
+        user_id = data_split[1]
+
         if data_split[0] == 'Enter':
-            enter(data, record)
+            temp.append(data)
+            enter(user_id, data_split[2], temp)
+
         elif data_split[0] == 'Leave':
-            leave(data, record)
+            temp.append(data)
+
         elif data_split[0] == 'Change':
-            change(data, record)
+            change(user_id, data_split[2], temp)
 
-    for data in record:
-        if data.split()[0] != 'Change':
-            answer.append(convert(data))
+    for data in temp:
+        output.append(convert(data))
 
-    return answer
+    return output
