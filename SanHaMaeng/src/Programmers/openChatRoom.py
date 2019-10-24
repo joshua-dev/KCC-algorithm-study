@@ -59,21 +59,36 @@
 # 채팅방에서 나간 유저가 닉네임을 변경하는 등 잘못 된 입력은 주어지지 않는다.
 
 
-def enter(data: str, record: list):
+def enter(data: str, records: list):
     data_split = data.split()
     user_id, nickname = data_split[1], data_split[2]
 
-    return
+    for index in range(len(records)):
+        record = records[index]
+        record_split = record.split()
+        if record_split[1] == user_id:
+            records[index] = ' '.join([record_split[0], user_id, nickname])
+
+    records.append(data)
 
 
 def leave(data: str, record: list):
 
-    return
-
-
-def change(data: str, record: list):
+    # TODO
 
     return
+
+
+def change(data: str, records: list):
+    data_split = data.split()
+    user_id = data_split[1], new_nickname = data_split[2]
+
+    for index in range(len(records)):
+        record = records[index]
+        record_split = record.split()
+        if record_split[1] == user_id:
+            # FIXME: change algorithm if keyword is 'Leave'
+            records[index] = ' '.join([record_split[0], user_id, new_nickname])
 
 
 def convert(data: str) -> str:
