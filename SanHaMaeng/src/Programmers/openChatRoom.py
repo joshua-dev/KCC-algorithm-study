@@ -62,24 +62,28 @@
 def enter(data: str, record: list):
     data_split = data.split()
     user_id, nickname = data_split[1], data_split[2]
-    
-    
 
     return
 
 
 def leave(data: str, record: list):
 
-
-
     return
 
 
 def change(data: str, record: list):
 
-
-
     return
+
+
+def convert(data: str) -> str:
+    data_split = data.split()
+
+    if data_split[0] == 'Enter':
+        return '%s님이 들어왔습니다.' % data[2]
+
+    elif data_split[0] == 'Leave':
+        return '%s님이 나갔습니다.' % data[2]
 
 
 def solution(record: list) -> list:
@@ -94,6 +98,8 @@ def solution(record: list) -> list:
         elif data_split[0] == 'Change':
             change(data, record)
 
-    
+    for data in record:
+        if data.split()[0] != 'Change':
+            answer.append(convert(data))
 
     return answer
