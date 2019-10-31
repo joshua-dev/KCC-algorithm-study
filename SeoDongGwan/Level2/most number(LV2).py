@@ -14,49 +14,39 @@ numbers의 원소는 0 이상 1,000 이하입니다.
 '''
 
 
-
 def solution(numbers):
-    answer_list = [] #10이하의 수 배열
-    answer_list_of_over_10 =[] # 10이상의 수 배열
+    answer_list = []  # 10이하의 수 배열
+    answer_list_of_over_10 = []  # 10이상의 수 배열
     for i in numbers:
-        if i <10: # 10보다 작다면 10이하 배열에 추가
-            answer_list.append(i)   
+        if i < 10:  # 10보다 작다면 10이하 배열에 추가
+            answer_list.append(i)
 
-    answer_list.sort() 
-    answer_list.reverse() #10이하의 수 배열을 역정렬
-    
+    answer_list.sort()
+    answer_list.reverse()  # 10이하의 수 배열을 역정렬
 
-    for j in numbers: # 10보다 크다면 10이상 배열에 추가
-        if j >=10:
+    for j in numbers:  # 10보다 크다면 10이상 배열에 추가
+        if j >= 10:
             answer_list_of_over_10.append(j)
     answer_list_of_over_10.sort()
-    
-
 
     for i in range(0, len(answer_list_of_over_10)):
-            for j in range(0,len(answer_list)):
-                if answer_list_of_over_10[i]>answer_list[j]*11: #만약 30과 3이 있다면 303보다는 330이 크다 그래서 10이하의 수*11을  
-                    answer_list.insert(j, answer_list_of_over_10[i])#한 값보다 10이상의 수가 크다면 해당 수의 앞에 10이상의 수를 배열에 추가
-                    del answer_list_of_over_10[i] #10이하의 수에 추가된 10이상의 수는 10이상의 수배열에서 삭제
+        for j in range(0, len(answer_list)):
+            # 만약 30과 3이 있다면 303보다는 330이 크다 그래서 10이하의 수*11을
+            if answer_list_of_over_10[i] > answer_list[j]*11:
+                # 한 값보다 10이상의 수가 크다면 해당 수의 앞에 10이상의 수를 배열에 추가
+                answer_list.insert(j, answer_list_of_over_10[i])
+                # 10이하의 수에 추가된 10이상의 수는 10이상의 수배열에서 삭제
+                del answer_list_of_over_10[i]
 
-    answer_list_of_over_10.reverse() #만약 10이상의 수가 남아있다면 역정렬한다
-    final_answer = answer_list + answer_list_of_over_10 # 정렬이 된 두개의 배열을 더한다
-    
+    answer_list_of_over_10.reverse()  # 만약 10이상의 수가 남아있다면 역정렬한다
+    final_answer = answer_list + answer_list_of_over_10  # 정렬이 된 두개의 배열을 더한다
 
-
-    for n in final_answer: 
+    for n in final_answer:
         print(n, end='')
 
-
-    
-
-                 
-            
-    #return answer로 배열을 스트링으로 뽑아내는 법은 잘 모르겠습니다..
+    # return answer로 배열을 스트링으로 뽑아내는 법은 잘 모르겠습니다..
 
 
-
-        
 '''
 def solution(numbers):
 
