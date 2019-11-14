@@ -41,8 +41,6 @@ def solution(numbers):
 
     answer_list_of_over_10.reverse() #만약 10이상의 수가 남아있다면 역정렬한다
     final_answer = answer_list + answer_list_of_over_10 # 정렬이 된 두개의 배열을 더한다
-    
-
 
     for n in final_answer: 
         print(n, end='')

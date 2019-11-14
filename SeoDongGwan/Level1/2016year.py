@@ -19,7 +19,7 @@ def solution(a,b):
 
     total_day = 0 # 총 일수를 세기위해서 변수를 지정해준다.
 
-    for i in range(0,a): #1월부터 a월까지 일수를 모두 더한다. 
+    for i in range(a-1): #1월부터 a월까지 일수를 모두 더한다.
         total_day += final_day_of_each_month[i]
 
 
