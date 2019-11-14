@@ -33,11 +33,3 @@ long long solution(int w, int h)
 
     return w * (h - unit);
 }
-
-int main(void)
-{
-    int W = 12, H = 8;
-    printf("%lli", solution(W, H));
-
-    return 0;
-}
