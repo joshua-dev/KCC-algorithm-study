@@ -4,5 +4,5 @@
 
 # TODO
 
-- [ ] joyStick
+- [x] joyStick
 - [ ] Brian's Contemplating

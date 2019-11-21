@@ -26,12 +26,43 @@ base_string = [chr(x + 65) for x in range(26)]  # ['A' .. 'Z']
 
 
 def regulate(x: int) -> int:
-    return x if x < 13 else 26-x
+    return x if x < 13 else 26 - x
+
+
+def need(s: str) -> int:
+    idx = base_string.index(s)
+    return regulate(idx)
 
 
 def solution(name: str) -> int:
-    needs = list()
-    for s in name:
-        needs.append(base_string.index(s))
+    # records needed count for characters in name
+    needs = [need(s) for s in name]
 
-    return 0
+    cnt = 0
+    ptr = 0
+    max_distance = len(name)//2
+
+    if name[cnt] != 'A':
+        cnt += needs[ptr]
+        needs[ptr] = 0
+
+    # records how much left
+    left = sum(needs)
+
+    while left:
+        for d in range(1, max_distance+1):
+            if needs[ptr+d]:
+                cnt += d + needs[ptr+d]
+                left -= needs[ptr+d]
+                needs[ptr+d] = 0
+                ptr = ptr+d
+                break
+
+            if needs[ptr-d]:
+                cnt += d + needs[ptr-d]
+                left -= needs[ptr-d]
+                needs[ptr-d] = 0
+                ptr = ptr-d
+                break
+
+    return cnt
