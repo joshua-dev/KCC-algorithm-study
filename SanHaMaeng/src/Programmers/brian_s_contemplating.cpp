@@ -60,10 +60,17 @@
 // 두 번째 예제 입력에 대해 SIGONG J O A를 리턴하는 코드의 경우 정답이지만 올바르지 않은 결과로 표시됩니다. '코드 채점'을 눌러 제출할 시에는 올바르게 채점되니 참고하여 주시기 바랍니다.
 
 #include <string>
+#include <vector>
 
 using namespace std;
 
 string solution(string sentence)
 {
-    return "";
+    vector<char> output;
+
+    for (int i = 0; i < sentence.length(); i++)
+    {
+    }
+
+    return "invalid";
 }
