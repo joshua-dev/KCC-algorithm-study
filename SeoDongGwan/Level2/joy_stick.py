@@ -28,34 +28,39 @@ JAN	23
 
 '''
 
-def solution(name): 
+
+def solution(name):
     answer = 0
-    not_a_position=[] #A가 아닌 알파벳의 어레이 위치
-    gps=0 # 현재 위치
-    
-    for i in range(len(name)): # 알파벳 상하 조절에 필요한 조작 횟수를 찾아 answer에 추가
-        if ord(name[i]) == 65: 
+    not_a_position = []  # A가 아닌 알파벳의 어레이 위치
+    gps = 0  # 현재 위치
+
+    for i in range(len(name)):  # 알파벳 상하 조절에 필요한 조작 횟수를 찾아 answer에 추가
+        if ord(name[i]) == 65:
             pass
         else:
-            tmp=ord(name[i]) - 65 
+            tmp = ord(name[i]) - 65
             not_a_position.append(i)
-            if tmp>13:
-                answer+=26-tmp
+            if tmp > 13:
+                answer += 26-tmp
             else:
-                answer+=tmp
-    
-    while not_a_position!=[]: 
-        tmp1=min(abs(not_a_position[0]-gps),len(name)-abs(not_a_position[0]-gps)) # 순차적으로 조작했을 때 A가 아닌 알파벳으로 가는 최솟값  
-        tmp2=min(abs(not_a_position[-1]-gps),len(name)-abs(not_a_position[-1]-gps)) # 역순으로 조작했을 때 A가 아닌 알파벳으로 가는 최솟값
-        #어레이 1개 남은 상황에서 tmp1과 tmp2가 같아진다.
-        
-        if tmp1>tmp2: #순차적으로 가는 방법이 더 느릴때 최솟값인 역순으로 가는 횟수를 answer에 추가          
-            gps=not_a_position.pop() # 역순으로 갔을 때 조이스틱 값의 위치
-            answer+=tmp2
-        else :  # 순차가 빠르다면 순차적으로 가는 횟수를 answer에 추가
-            gps=not_a_position.pop(0) # 순차적으로 갔을 때 조이스틱 값의 위치
-            answer+=tmp1
-        
+                answer += tmp
+
+    while not_a_position:
+        # 순차적으로 조작했을 때 A가 아닌 알파벳으로 가는 최솟값
+        tmp1 = min(abs(not_a_position[0]-gps),
+                   len(name)-abs(not_a_position[0]-gps))
+        # 역순으로 조작했을 때 A가 아닌 알파벳으로 가는 최솟값
+        tmp2 = min(abs(not_a_position[-1]-gps),
+                   len(name)-abs(not_a_position[-1]-gps))
+        # 어레이 1개 남은 상황에서 tmp1과 tmp2가 같아진다.
+
+        if tmp1 > tmp2:  # 순차적으로 가는 방법이 더 느릴때 최솟값인 역순으로 가는 횟수를 answer에 추가
+            gps = not_a_position.pop()  # 역순으로 갔을 때 조이스틱 값의 위치
+            answer += tmp2
+        else:  # 순차가 빠르다면 순차적으로 가는 횟수를 answer에 추가
+            gps = not_a_position.pop(0)  # 순차적으로 갔을 때 조이스틱 값의 위치
+            answer += tmp1
+
     return answer
 
 

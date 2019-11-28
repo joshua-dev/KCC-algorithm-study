@@ -42,7 +42,7 @@ def solution(name: str) -> int:
     ptr = 0
     max_distance = len(name)//2
 
-    if name[cnt] != 'A':
+    if name[ptr] != 'A':
         cnt += needs[ptr]
         needs[ptr] = 0
 
