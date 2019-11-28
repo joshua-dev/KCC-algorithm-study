@@ -24,9 +24,42 @@ name의 길이는 1 이상 20 이하입니다.
 name	return
 JEROEN	56
 JAN	23
+
+
 '''
 
+def solution(name): 
+    answer = 0
+    not_a_position=[] #A가 아닌 알파벳의 어레이 위치
+    gps=0 # 현재 위치
+    
+    for i in range(len(name)): # 알파벳 상하 조절에 필요한 조작 횟수를 찾아 answer에 추가
+        if ord(name[i]) == 65: 
+            pass
+        else:
+            tmp=ord(name[i]) - 65 
+            not_a_position.append(i)
+            if tmp>13:
+                answer+=26-tmp
+            else:
+                answer+=tmp
+    
+    while not_a_position!=[]: 
+        tmp1=min(abs(not_a_position[0]-gps),len(name)-abs(not_a_position[0]-gps)) # 순차적으로 조작했을 때 A가 아닌 알파벳으로 가는 최솟값  
+        tmp2=min(abs(not_a_position[-1]-gps),len(name)-abs(not_a_position[-1]-gps)) # 역순으로 조작했을 때 A가 아닌 알파벳으로 가는 최솟값
+        #어레이 1개 남은 상황에서 tmp1과 tmp2가 같아진다.
+        
+        if tmp1>tmp2: #순차적으로 가는 방법이 더 느릴때 최솟값인 역순으로 가는 횟수를 answer에 추가          
+            gps=not_a_position.pop() # 역순으로 갔을 때 조이스틱 값의 위치
+            answer+=tmp2
+        else :  # 순차가 빠르다면 순차적으로 가는 횟수를 answer에 추가
+            gps=not_a_position.pop(0) # 순차적으로 갔을 때 조이스틱 값의 위치
+            answer+=tmp1
+        
+    return answer
 
+
+'''
 def solution(name):
     answer = 0
     name_list = []
@@ -36,14 +69,17 @@ def solution(name):
         else:
             name_list.append(ord(i)-65)#A~M
 
+    print(name_list)
+
+ 
     for j in name_list: #한 개의 알파벳당 +1만큼 좌우 조절
          
         answer=answer+j+1
         
-    print(answer)    
+    
     if name_list[1] == 0: #만약 2번째 영어가 A이면 마지막 칸으로 가면되니 A에 대한 스틱조절 -1을 해준다
         answer = answer - 1
 
-    print(name_list)
     return answer-1 #알파벳당 좌우조절 +1을 해줬지만 마지막 알파벳은 조절이 필요없으므로 -1
 
+'''
