@@ -1,10 +1,9 @@
 # 실패율
+
 # 문제 설명
 
-# 슈퍼 게임 개발자 오렐리는 큰 고민에 빠졌다.
-# 그녀가 만든 프랜즈 오천성이 대성공을 거뒀지만, 요즘 신규 사용자의 수가 급감한 것이다.
+# 슈퍼 게임 개발자 오렐리는 큰 고민에 빠졌다. 그녀가 만든 프랜즈 오천성이 대성공을 거뒀지만, 요즘 신규 사용자의 수가 급감한 것이다.
 # 원인은 신규 사용자와 기존 사용자 사이에 스테이지 차이가 너무 큰 것이 문제였다.
-
 # 이 문제를 어떻게 할까 고민 한 그녀는 동적으로 게임 시간을 늘려서 난이도를 조절하기로 했다.
 # 역시 슈퍼 개발자라 대부분의 로직은 쉽게 구현했지만, 실패율을 구하는 부분에서 위기에 빠지고 말았다. 오렐리를 위해 실패율을 구하는 코드를 완성하라.
 
@@ -26,15 +25,30 @@
 def solution(N: int, stages: list) -> list:
     from collections import Counter
 
-    total = sum(stages)
-    counter = dict(Counter(stages))
-    failure_rates = [counter[1]/total]
+    total = len(stages)
+    failure_rates = [[x, 0] for x in range(1, N + 1)]
 
-    total -= counter[1]
+    counter = Counter(stages)
 
-    for x in range(2, N+1):
-        failure_rate = counter[x]/total
-        total -= counter[x]
-        failure_rates.append(failure_rate)
+    for level in sorted(counter.keys()):
+        if level <= N:
+            failure_rate = counter[level] / total
+            failure_rates[level - 1][1] = failure_rate
+            total -= counter[level]
 
-    return failure_rates
+    return [x[0] for x in sorted(failure_rates, key=lambda x: x[1], reverse=True)]
+
+
+import unittest
+
+
+class SolutionTest(unittest.TestCase):
+    def test_01(self):
+        self.assertEqual(solution(5, [2, 1, 2, 6, 2, 4, 3, 3]), [3, 4, 2, 1, 5])
+
+    def test_02(self):
+        self.assertEqual(solution(4, [4, 4, 4, 4, 4]), [4, 1, 2, 3])
+
+
+if __name__ == "__main__":
+    unittest.main()
