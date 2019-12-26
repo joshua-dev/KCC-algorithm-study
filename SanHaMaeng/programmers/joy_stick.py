@@ -21,6 +21,7 @@
 # name은 알파벳 대문자로만 이루어져 있습니다.
 # name의 길이는 1 이상 20 이하입니다.
 
+import unittest
 
 base_string = [chr(x + 65) for x in range(26)]  # ['A' .. 'Z']
 
@@ -40,7 +41,7 @@ def solution(name: str) -> int:
 
     cnt = 0
     ptr = 0
-    max_distance = len(name)//2
+    max_distance = len(name) // 2
 
     if name[ptr] != 'A':
         cnt += needs[ptr]
@@ -50,19 +51,29 @@ def solution(name: str) -> int:
     left = sum(needs)
 
     while left:
-        for d in range(1, max_distance+1):
-            if needs[ptr+d]:
-                cnt += d + needs[ptr+d]
-                left -= needs[ptr+d]
-                needs[ptr+d] = 0
-                ptr = ptr+d
+        for d in range(1, max_distance + 1):
+            if needs[ptr + d]:
+                cnt += d + needs[ptr + d]
+                left -= needs[ptr + d]
+                needs[ptr + d] = 0
+                ptr = ptr + d
                 break
 
-            if needs[ptr-d]:
-                cnt += d + needs[ptr-d]
-                left -= needs[ptr-d]
-                needs[ptr-d] = 0
-                ptr = ptr-d
+            if needs[ptr - d]:
+                cnt += d + needs[ptr - d]
+                left -= needs[ptr - d]
+                needs[ptr - d] = 0
+                ptr = ptr - d
                 break
 
     return cnt
+
+
+class SolutionTest(unittest.TestCase):
+    def test_1(self):
+        name = 'JEROEN'
+        self.assertEqual(solution(name), 56)
+
+    def test_2(self):
+        name = 'JAN'
+        self.assertEqual(solution(name), 23)

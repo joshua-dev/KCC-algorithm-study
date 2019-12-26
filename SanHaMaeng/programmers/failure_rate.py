@@ -21,6 +21,8 @@
 # 만약 실패율이 같은 스테이지가 있다면 작은 번호의 스테이지가 먼저 오도록 하면 된다.
 # 스테이지에 도달한 유저가 없는 경우 해당 스테이지의 실패율은 0 으로 정의한다.
 
+import unittest
+
 
 def solution(N: int, stages: list) -> list:
     from collections import Counter
@@ -36,17 +38,17 @@ def solution(N: int, stages: list) -> list:
             failure_rates[level - 1][1] = failure_rate
             total -= counter[level]
 
-    return [x[0] for x in sorted(failure_rates, key=lambda x: x[1], reverse=True)]
-
-
-import unittest
+    return [
+        x[0] for x in sorted(failure_rates, key=lambda x: x[1], reverse=True)
+    ]
 
 
 class SolutionTest(unittest.TestCase):
-    def test_01(self):
-        self.assertEqual(solution(5, [2, 1, 2, 6, 2, 4, 3, 3]), [3, 4, 2, 1, 5])
+    def test_1(self):
+        self.assertEqual(solution(5, [2, 1, 2, 6, 2, 4, 3, 3]),
+                         [3, 4, 2, 1, 5])
 
-    def test_02(self):
+    def test_2(self):
         self.assertEqual(solution(4, [4, 4, 4, 4, 4]), [4, 1, 2, 3])
 
 
