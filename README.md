@@ -12,5 +12,5 @@ foo$ python3 -m unittest bar.py
 
 ## Solve Request
 
-- [ ] [[탐욕법] 조이스틱](https://programmers.co.kr/learn/courses/30/lessons/42860)
+- [X] [[탐욕법] 조이스틱](https://programmers.co.kr/learn/courses/30/lessons/42860)
 - [ ] [[2017 카카오코드 예선] 브라이언의 고민](https://programmers.co.kr/learn/courses/30/lessons/1830)
