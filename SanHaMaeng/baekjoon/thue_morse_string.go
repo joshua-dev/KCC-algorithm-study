@@ -20,20 +20,20 @@
 
 package main
 
-import "fmt"
+// import "fmt"
 
-func solution(k int) int {
-	if k == 0 || k == 1 {
-		return k
-	} else if k%2 == 0 {
-		return solution(k / 2)
-	} else {
-		return 1 - solution(k/2)
-	}
-}
+// func solution(k int) int {
+// 	if k == 0 || k == 1 {
+// 		return k
+// 	} else if k%2 == 0 {
+// 		return solution(k / 2)
+// 	} else {
+// 		return 1 - solution(k/2)
+// 	}
+// }
 
-func main() {
-	var k int
-	fmt.Scanln(&k)
-	fmt.Println(solution(k - 1))
-}
+// func main() {
+// 	var k int
+// 	fmt.Scanln(&k)
+// 	fmt.Println(solution(k - 1))
+// }
