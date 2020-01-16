@@ -1,3 +1,5 @@
+// Package baekjoon is a set of Baekjoon's algorithm solutions.
+
 // 투에-모스 문자열
 // 문제
 // 0과 1로 이루어진 길이가 무한한 문자열 X가 있다. 이 문자열은 다음과 같은 과정으로 만들어진다.
@@ -18,11 +20,10 @@
 // 출력
 // 첫 번째 줄에 k번째에 오는 문자를 출력하라.
 
-package main
-
-import "fmt"
+package baekjoon
 
 func solution(k int) int {
+	k -= 1
 	if k == 0 || k == 1 {
 		return k
 	} else if k%2 == 0 {
@@ -30,10 +31,4 @@ func solution(k int) int {
 	} else {
 		return 1 - solution(k/2)
 	}
-}
-
-func main() {
-	var k int
-	fmt.Scanln(&k)
-	fmt.Println(solution(k - 1))
 }

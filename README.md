@@ -1,6 +1,6 @@
 # KCC-algorithm-study
 
-[![GitHub license](https://img.shields.io/badge/License-MIT-%23F4D03F)](https://github.com/joshua-dev/KCC-algorithm-study/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/badge/license-MIT-green)](https://github.com/joshua-dev/KCC-algorithm-study/blob/master/LICENSE)
 
 ## Kookmin Univ. Coding Club algorithm study
 
@@ -13,4 +13,12 @@
 
 ```console
 $ python3 -m unittest foo.py
+```
+
+### Unit test in Go
+
+##### Let foo.go has solution algorithm and foo_test.go has unit test function whose name starts with 'Example'
+
+```console
+$ go test foo.go foo_test.go
 ```
