@@ -1,3 +1,5 @@
+// Package baekjoon is a set of Baekjoon's algorithm solutions.
+
 // 분산처리
 // 문제
 // 재용이는 최신 컴퓨터 10대를 가지고 있다.
@@ -15,9 +17,7 @@
 // 출력
 // 각 테스트 케이스에 대해 마지막 데이터가 처리되는 컴퓨터의 번호를 출력한다.
 
-package main
-
-import "fmt"
+package baekjoon
 
 func solution(a, b int) int {
 	t := a % 10
@@ -34,13 +34,4 @@ func solution(a, b int) int {
 		result %= 10
 	}
 	return result
-}
-
-func main() {
-	var T, a, b int
-	fmt.Scanln(&T)
-	for x := 0; x < T; x++ {
-		fmt.Scanln(&a, &b)
-		fmt.Println(solution(a, b))
-	}
 }
